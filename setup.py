@@ -2,14 +2,15 @@
 from setuptools import setup
 
 setup(
-    name='django-thumbnails',
-    version='0.3.2',
+    name='cd_django_thumbnails',
+    version='0.3.3',
     author='Selwin Ong',
     author_email='selwin.ong@gmail.com',
     packages=['thumbnails'],
     url='https://github.com/ui/django-thumbnails',
     license='MIT',
-    description='A simple Django app to manage image/photo thumbnails. Supports remote/cloud storage systems like Amazon S3.',
+    description='A simple Django app to manage image/photo thumbnails. '
+                'Supports remote/cloud storage systems like Amazon S3.',
     long_description=open('README.rst').read(),
     zip_safe=False,
     include_package_data=True,

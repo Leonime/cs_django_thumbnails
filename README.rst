@@ -26,7 +26,7 @@ settings.py:
         'STORAGE': {
             'BACKEND': 'django.core.files.storage.FileSystemStorage',
             # You can also use Amazon S3 or any other Django storage backends
-        }
+        },
         'SIZES': {
             'small': {
                 'PROCESSORS': [
