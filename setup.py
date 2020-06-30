@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='cd_django_thumbnails',
-    version='0.3.2',
+    version='0.3.3',
     author='Selwin Ong',
     author_email='selwin.ong@gmail.com',
     packages=['thumbnails'],
