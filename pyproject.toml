@@ -5,6 +5,10 @@ description = "A simple Django app to manage image/photo thumbnails. Supports re
 authors = ["Leopoldo Parra <lparra.dev@gmail.com>"]
 license = "MIT"
 
+packages = [
+    { include="thumbnails", from="." },
+]
+
 [tool.poetry.dependencies]
 python = "^3.8"
 django = "^3.0.7"
