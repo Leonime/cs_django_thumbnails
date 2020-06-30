@@ -9,7 +9,8 @@ setup(
     packages=['thumbnails'],
     url='https://github.com/ui/django-thumbnails',
     license='MIT',
-    description='A simple Django app to manage image/photo thumbnails. Supports remote/cloud storage systems like Amazon S3.',
+    description='A simple Django app to manage image/photo thumbnails. '
+                'Supports remote/cloud storage systems like Amazon S3.',
     long_description=open('README.rst').read(),
     zip_safe=False,
     include_package_data=True,
