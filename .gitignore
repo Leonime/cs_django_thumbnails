@@ -1,3 +1,8 @@
+# Django stuff
+cs_django_thumbnails/
+cooking/
+manage.py
+*.sqlite3
 # IDEs folders.
 .idea/
 # Byte-compiled / optimized / DLL files
