@@ -67,7 +67,7 @@ class DatabaseBackend(BaseBackend):
         except ThumbnailMeta.DoesNotExist:
             return None
 
-    def add_thumbnail(self, source_name, size, name):
+    def add_thumbnail(self, name, size, source_name):
         source = self.get_source(source_name)
         meta = ThumbnailMeta.objects.create(source=source, size=size, name=name)
         return ImageMeta(source_name, meta.name, meta.size)
@@ -114,7 +114,7 @@ class RedisBackend(BaseBackend):
             return ImageMeta(source_name, name, size)
         return None
 
-    def add_thumbnail(self, source_name, size, name):
+    def add_thumbnail(self, name, size, source_name):
         self.redis.hset(self.get_thumbnail_key(source_name), size, name)
         return ImageMeta(source_name, name, size)
 
