@@ -1,6 +1,7 @@
 # Django stuff
 cs_django_thumbnails/
 cooking/
+static/
 manage.py
 *.sqlite3
 # IDEs folders.
