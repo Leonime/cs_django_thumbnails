@@ -7,7 +7,7 @@ setup(
     author='Selwin Ong',
     author_email='selwin.ong@gmail.com',
     packages=['thumbnails'],
-    url='https://github.com/ui/django-thumbnails',
+    url='https://github.com/Leonime/cs_django_thumbnails',
     license='MIT',
     description='A simple Django app to manage image/photo thumbnails. '
                 'Supports remote/cloud storage systems like Amazon S3.',
