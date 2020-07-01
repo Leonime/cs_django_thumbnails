@@ -5,6 +5,8 @@ from thumbnails.backends.metadata import ImageMeta
 from thumbnails.models import Source, ThumbnailMeta
 from thumbnails.backends.metadata import DatabaseBackend, RedisBackend
 
+TEST_IMAGE = 'test-thumbnail.jpg'
+
 
 class DatabaseBackendTest(TestCase):
 
@@ -64,7 +66,7 @@ class RedisBackendTest(TestCase):
         self.assertEqual(self.backend.get_thumbnail_key('a.jpg'), 'djthumbs-test:thumbnails:a.jpg')
 
     def test_add_delete_source(self):
-        source_name = 'test-thumbnail.jpg'
+        source_name = TEST_IMAGE
         source_key = self.backend.get_source_key(source_name)
 
         self.backend.add_source(source_name)
@@ -73,7 +75,7 @@ class RedisBackendTest(TestCase):
         self.assertFalse(self.redis.hexists(source_key, source_name))
 
     def test_get_source(self):
-        source_name = 'test-thumbnail.jpg'
+        source_name = TEST_IMAGE
         source_key = self.backend.get_source_key(source_name)
 
         self.redis.hset(source_key, source_name, source_name)
@@ -83,7 +85,7 @@ class RedisBackendTest(TestCase):
         self.redis.hdel(source_key, source_name)
 
     def test_add_delete_thumbnail(self):
-        source_name = 'test-thumbnail.jpg'
+        source_name = TEST_IMAGE
         size = 'small'
         thumbnail_key = self.backend.get_thumbnail_key(source_name)
 
@@ -98,7 +100,7 @@ class RedisBackendTest(TestCase):
         self.redis.hdel(self.backend.get_source_key(source_name), source_name)
 
     def test_get_thumbnail(self):
-        source_name = 'test-thumbnail.jpg'
+        source_name = TEST_IMAGE
 
         self.backend.add_source(source_name)
         self.backend.add_thumbnail(source_name, 'small', 'test-thumbnail_small.jpg')
