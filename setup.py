@@ -1,5 +1,13 @@
 # -*- coding: utf-8 -*-
+import pathlib
+
 from setuptools import setup
+
+# The directory containing this file
+HERE = pathlib.Path(__file__).parent
+
+# The text of the README file
+README = (HERE / "README.rst").read_text()
 
 setup(
     name='cd_django_thumbnails',
@@ -11,7 +19,7 @@ setup(
     license='MIT',
     description='A simple Django app to manage image/photo thumbnails. '
                 'Supports remote/cloud storage systems like Amazon S3.',
-    long_description=open('README.rst').read(),
+    long_description=README,
     zip_safe=False,
     include_package_data=True,
     package_data={'': ['README.rst']},
