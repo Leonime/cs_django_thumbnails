@@ -127,6 +127,27 @@ To run tests::
 Changelog
 =========
 
+Version 0.3.6
+-------------
+* Just some code cleanup nothing changed.
+* Fixed wrong config on Readme.
+
+Version 0.3.5
+-------------
+* Dropped support for python 3.5
+* Dropped support for Django versions: 2.0, 2.1 (it still works just dropping further development.)
+
+Version 0.3.4
+-------------
+* Removed support for python 2.
+* Fixed project breaking if redis not installed.
+* Fixed breaking on wrong configuration.
+* Added support for django 3.
+
+Version 0.3.3
+-------------
+* Just made small changes to check things out
+
 Version 0.3.2
 -------------
 * Fixed another bug in `fetch_thumbnails()` bug. Thanks @marsha97!
