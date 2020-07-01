@@ -11,12 +11,14 @@ from thumbnails.files import Thumbnail, FallbackImage
 
 from .models import TestModel
 
+TEST_IMAGE = 'thumbnails/tests/tests.png'
+
 
 class ImageFieldTest(TestCase):
 
     def setUp(self):
         self.instance = TestModel.objects.create()
-        with open('thumbnails/tests/tests.png', 'rb') as image_file:
+        with open(TEST_IMAGE, 'rb') as image_file:
             self.instance.avatar = File(image_file)
             self.instance.save()
         self.avatar_folder = \
@@ -141,13 +143,13 @@ class ImageFieldTest(TestCase):
 
     def test_resize_source_to_none(self):
         # Make sure that fields without resize_source_to does not raise error on save
-        with open('thumbnails/tests/tests.png', 'rb') as image_file:
+        with open(TEST_IMAGE, 'rb') as image_file:
             self.instance.profile_picture = File(image_file)
             self.instance.save()
 
     def test_fetch_non_redis(self):
         test_objc = TestModel.objects.create()
-        with open('thumbnails/tests/tests.png', 'rb') as image_file:
+        with open(TEST_IMAGE, 'rb') as image_file:
             test_objc.avatar = File(image_file)
             test_objc.save()
 
@@ -169,10 +171,10 @@ class ImageFieldTest(TestCase):
     def test_fetch_redis_backend(self):
         TestModel.objects.all().delete()
 
-        for i in range(1, 10):
+        for _ in range(1, 10):
             test_objc = TestModel.objects.create()
 
-            with open('thumbnails/tests/tests.png', 'rb') as image_file:
+            with open(TEST_IMAGE, 'rb') as image_file:
                 test_objc.avatar = File(image_file)
                 test_objc.save()
 
@@ -210,10 +212,10 @@ class ImageFieldTest(TestCase):
     def test_populate_redis_backend_with_size(self):
         TestModel.objects.all().delete()
 
-        for i in range(1, 10):
+        for _ in range(1, 10):
             test_objc = TestModel.objects.create()
 
-            with open('thumbnails/tests/tests.png', 'rb') as image_file:
+            with open(TEST_IMAGE, 'rb') as image_file:
                 test_objc.avatar = File(image_file)
                 test_objc.save()
 

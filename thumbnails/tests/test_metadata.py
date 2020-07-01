@@ -5,6 +5,9 @@ from thumbnails.backends.metadata import ImageMeta
 from thumbnails.models import Source, ThumbnailMeta
 from thumbnails.backends.metadata import DatabaseBackend, RedisBackend
 
+TEST_IMAGE = 'test-thumbnail.jpg'
+TEST_IMAGE_SMALL = 'test-thumbnail_small.jpg'
+
 
 class DatabaseBackendTest(TestCase):
 
@@ -64,7 +67,7 @@ class RedisBackendTest(TestCase):
         self.assertEqual(self.backend.get_thumbnail_key('a.jpg'), 'djthumbs-test:thumbnails:a.jpg')
 
     def test_add_delete_source(self):
-        source_name = 'test-thumbnail.jpg'
+        source_name = TEST_IMAGE
         source_key = self.backend.get_source_key(source_name)
 
         self.backend.add_source(source_name)
@@ -73,7 +76,7 @@ class RedisBackendTest(TestCase):
         self.assertFalse(self.redis.hexists(source_key, source_name))
 
     def test_get_source(self):
-        source_name = 'test-thumbnail.jpg'
+        source_name = TEST_IMAGE
         source_key = self.backend.get_source_key(source_name)
 
         self.redis.hset(source_key, source_name, source_name)
@@ -83,12 +86,12 @@ class RedisBackendTest(TestCase):
         self.redis.hdel(source_key, source_name)
 
     def test_add_delete_thumbnail(self):
-        source_name = 'test-thumbnail.jpg'
+        source_name = TEST_IMAGE
         size = 'small'
         thumbnail_key = self.backend.get_thumbnail_key(source_name)
 
         self.backend.add_source(source_name)
-        self.backend.add_thumbnail(source_name, size, 'test-thumbnail_small.jpg')
+        self.backend.add_thumbnail(source_name, size, TEST_IMAGE_SMALL)
         self.assertTrue(self.redis.hexists(thumbnail_key, size))
 
         self.backend.delete_thumbnail(source_name, size)
@@ -98,14 +101,15 @@ class RedisBackendTest(TestCase):
         self.redis.hdel(self.backend.get_source_key(source_name), source_name)
 
     def test_get_thumbnail(self):
-        source_name = 'test-thumbnail.jpg'
+        source_name = TEST_IMAGE
 
         self.backend.add_source(source_name)
-        self.backend.add_thumbnail(source_name, 'small', 'test-thumbnail_small.jpg')
-        self.assertEqual(self.backend.get_thumbnail(source_name, 'small'), ImageMeta(source_name, 'test-thumbnail_small.jpg', 'small'))
+        self.backend.add_thumbnail(source_name, 'small', TEST_IMAGE_SMALL)
+        self.assertEqual(self.backend.get_thumbnail(source_name, 'small'),
+                         ImageMeta(source_name, TEST_IMAGE_SMALL, 'small'))
         self.backend.add_thumbnail(source_name, 'large', 'test-thumbnail_large.jpg')
 
-        expected = ['test-thumbnail_large.jpg', 'test-thumbnail_small.jpg']
+        expected = ['test-thumbnail_large.jpg', TEST_IMAGE_SMALL]
         result = [image_meta.name for image_meta in self.backend.get_thumbnails(source_name)]
         # sort is replacing the variable in place, not returning new value, it will always return None
         result.sort()

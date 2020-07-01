@@ -26,22 +26,22 @@ class ImageMeta:
 
 class BaseBackend:
 
-    def add_source(name):
+    def add_source(self, name):
         raise NotImplementedError
 
-    def delete_source(name):
+    def delete_source(self, name):
         raise NotImplementedError
 
-    def get_thumbnails(name):
+    def get_thumbnails(self, name):
         raise NotImplementedError
 
-    def get_thumbnail(name, size):
+    def get_thumbnail(self, name, size):
         raise NotImplementedError
 
-    def add_thumbnail(name, size, filename):
+    def add_thumbnail(self, name, size, filename):
         raise NotImplementedError
 
-    def delete_thumbnail(name, size):
+    def delete_thumbnail(self, name, size):
         raise NotImplementedError
 
 

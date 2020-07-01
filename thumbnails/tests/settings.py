@@ -31,6 +31,8 @@ TEMPLATES = [
     },
 ]
 
+THUMBNAILS_PROCESSORS = 'thumbnails.processors.resize'
+
 THUMBNAILS = {
     'METADATA': {
         'PREFIX': 'djthumbs-test',
@@ -43,13 +45,13 @@ THUMBNAILS = {
     'SIZES': {
         'small': {
             'PROCESSORS': [
-                {'PATH': 'thumbnails.processors.resize', 'width': 10, 'height': 10}
+                {'PATH': THUMBNAILS_PROCESSORS, 'width': 10, 'height': 10}
             ],
         },
         'default': {
             'FALLBACK_IMAGE_URL': 'thumbnails/tests/tests.png',
             'PROCESSORS': [
-                {'PATH': 'thumbnails.processors.resize', 'width': 20, 'height': 20},
+                {'PATH': THUMBNAILS_PROCESSORS, 'width': 20, 'height': 20},
                 {'PATH': 'thumbnails.processors.flip', 'direction': 'horizontal'}
             ],
             'POST_PROCESSORS': [
@@ -58,7 +60,7 @@ THUMBNAILS = {
         },
         'large': {
             'PROCESSORS': [
-                {'PATH': 'thumbnails.processors.resize', 'width': 80, 'height': 80},
+                {'PATH': THUMBNAILS_PROCESSORS, 'width': 80, 'height': 80},
                 {'PATH': 'thumbnails.processors.rotate', 'degrees': 45},
                 {'PATH': 'thumbnails.processors.crop', 'width': 80, 'height': 80, 'center': ('50%,50%')}
             ]
