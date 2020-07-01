@@ -1,5 +1,3 @@
-from redis import StrictRedis
-
 from thumbnails import compat, conf
 from thumbnails.models import Source, ThumbnailMeta
 from thumbnails.utils import import_attribute
@@ -87,6 +85,7 @@ class RedisBackend(BaseBackend):
         db = conf.METADATA.get('db', 0)
         prefix = conf.METADATA.get('PREFIX', 'djthumbs')
         self.prefix = prefix + ":"
+        from redis import StrictRedis
         self.redis = StrictRedis(host=host, port=port, password=password, db=db)
 
     def get_source_key(self, name):
