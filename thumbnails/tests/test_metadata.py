@@ -104,7 +104,8 @@ class RedisBackendTest(TestCase):
 
         self.backend.add_source(source_name)
         self.backend.add_thumbnail(source_name, 'small', 'test-thumbnail_small.jpg')
-        self.assertEqual(self.backend.get_thumbnail(source_name, 'small'), ImageMeta(source_name, 'test-thumbnail_small.jpg', 'small'))
+        self.assertEqual(self.backend.get_thumbnail(source_name, 'small'),
+                         ImageMeta(source_name, 'test-thumbnail_small.jpg', 'small'))
         self.backend.add_thumbnail(source_name, 'large', 'test-thumbnail_large.jpg')
 
         expected = ['test-thumbnail_large.jpg', 'test-thumbnail_small.jpg']
