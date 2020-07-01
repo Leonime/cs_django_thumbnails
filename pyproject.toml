@@ -1,9 +1,13 @@
 [tool.poetry]
 name = "cs_django_thumbnails"
-version = "0.3.3"
+version = "0.3.4"
 description = "A simple Django app to manage image/photo thumbnails. Supports remote/cloud storage systems like Amazon S3."
 authors = ["Leopoldo Parra <lparra.dev@gmail.com>"]
 license = "MIT"
+
+packages = [
+    { include="thumbnails", from="." },
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"
