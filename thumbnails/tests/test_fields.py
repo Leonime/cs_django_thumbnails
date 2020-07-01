@@ -171,7 +171,7 @@ class ImageFieldTest(TestCase):
     def test_fetch_redis_backend(self):
         TestModel.objects.all().delete()
 
-        for i in range(1, 10):
+        for _ in range(1, 10):
             test_objc = TestModel.objects.create()
 
             with open(TEST_IMAGE, 'rb') as image_file:
@@ -212,7 +212,7 @@ class ImageFieldTest(TestCase):
     def test_populate_redis_backend_with_size(self):
         TestModel.objects.all().delete()
 
-        for i in range(1, 10):
+        for _ in range(1, 10):
             test_objc = TestModel.objects.create()
 
             with open(TEST_IMAGE, 'rb') as image_file:
