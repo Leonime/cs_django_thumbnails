@@ -37,12 +37,13 @@ def parse_processors(processor_definition):
     """
     parsed_processors = []
     for processor in processor_definition:
-        processor_function = import_attribute(processor['PATH'])
-        kwargs = deepcopy(processor)
-        kwargs.pop('PATH')
-        parsed_processors.append({
-            'processor': processor_function,
-            'kwargs': kwargs
-        })
+        if 'PATH' in processor:
+            processor_function = import_attribute(processor['PATH'])
+            kwargs = deepcopy(processor)
+            kwargs.pop('PATH')
+            parsed_processors.append({
+                'processor': processor_function,
+                'kwargs': kwargs
+            })
 
     return parsed_processors
